@@ -32,4 +32,22 @@ public class DaoMedico {
         conex.desconecta();
 
     }
+    
+    public BeansMedico buscaMedico(BeansMedico mod){
+        conex.conexao();
+        conex.executaSQL("select * from medico where nome_medico like '%"+mod.getPesquisa()+"%'");
+        try {
+            conex.rs.first();
+            mod.setCodigo(conex.rs.getInt("cod_medico"));
+            mod.setNome(conex.rs.getString("nome_medico"));
+            mod.setEspecialidade(conex.rs.getString("especialidade_medico"));
+            mod.setCrm(conex.rs.getInt("crm_medico"));
+            JOptionPane.showMessageDialog(null, "Pesquisa realizada com sucesso");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERRO ao pesquisar medico" + ex);
+        }
+        conex.desconecta();
+        return mod;
+        
+    }
 }

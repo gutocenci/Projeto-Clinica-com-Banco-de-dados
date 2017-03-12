@@ -2,12 +2,26 @@ package modelobeans;
 
 public class BeansMedico {
 
+    /**
+     * @return the pesquisa
+     */
+    public String getPesquisa() {
+        return pesquisa;
+    }
+
+    /**
+     * @param pesquisa the pesquisa to set
+     */
+    public void setPesquisa(String pesquisa) {
+        this.pesquisa = pesquisa;
+    }
+
     
     private int codigo;
     private int crm;
     private String nome;
     private String especialidade;
-
+    private String pesquisa;
 
     public int getCodigo() {
         return codigo;

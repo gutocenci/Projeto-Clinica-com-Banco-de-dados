@@ -17,7 +17,7 @@ public class ConexaoBD {
     private String caminho = "jdbc:postgresql://localhost:5432/PrjClinica"; //Qual o caminho do BD
     private String usuario = "postgres"; //Usuario BD
     private String senha = "K@frinhachenchi33"; //Usuario BD
-    Connection con; //Realizar a conexão
+    public Connection con; //Realizar a conexão
 
     public void conexao() { //metodo responsavel porrealizar conexao com a base de dados
 
@@ -36,6 +36,16 @@ public class ConexaoBD {
             //JOptionPane.showMessageDialog(null, "BD Desconectado com sucesso");
         } catch (SQLException ex) {
             //JOptionPane.showMessageDialog(null, "BD Erro ao fechar a conexão ao banco de dados:\n" + ex.getMessage());
+        }
+    }
+    
+    public void executaSQL(String sql){
+        try {
+            stn = con.createStatement(rs.TYPE_SCROLL_INSENSITIVE,rs.CONCUR_READ_ONLY);//Não key sensitive e rolagem da primeira 1 linha a ultima
+            rs = stn.executeQuery(sql);
+            JOptionPane.showMessageDialog(null, "Pesquisa realizada com sucesso");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "BD eero ao fechar ao pesquisar medicos:\n" + ex.getMessage());
         }
     }
     

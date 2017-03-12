@@ -241,7 +241,13 @@ public class FormMedico extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonFormMedicoNovoActionPerformed
 
     private void jButtonFormMedicoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFormMedicoPesquisarActionPerformed
-        
+        mod.setPesquisa(jTextFieldFormMedicoPesquisar.getText());
+        BeansMedico model = control.buscaMedico(mod);
+        jTextFieldFormMedicoNome.setText(model.getNome());
+        jFormattedTextFieldFormMedicoCRM.setText(String.valueOf(model.getCrm()));
+        jComboBoxFormMedicoExpecializacao.setSelectedItem(model.getEspecialidade());
+        jButtonFormMedicoEditar.setEnabled(true);
+        jButtonFormMedicoExcluir.setEnabled(true);
     }//GEN-LAST:event_jButtonFormMedicoPesquisarActionPerformed
 
     /**
