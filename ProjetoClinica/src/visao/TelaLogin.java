@@ -46,9 +46,9 @@ public class TelaLogin extends javax.swing.JFrame {
         getContentPane().add(jLabelLogin);
         jLabelLogin.setBounds(60, 50, 130, 110);
         getContentPane().add(jPasswordFieldSenha);
-        jPasswordFieldSenha.setBounds(310, 90, 160, 20);
+        jPasswordFieldSenha.setBounds(310, 100, 160, 30);
         getContentPane().add(jTextFieldUsuario);
-        jTextFieldUsuario.setBounds(310, 60, 160, 20);
+        jTextFieldUsuario.setBounds(310, 60, 160, 30);
 
         jButtonAcessar.setText("Acessar");
         jButtonAcessar.addActionListener(new java.awt.event.ActionListener() {
@@ -70,11 +70,11 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabelUsuario.setText("Usuário ");
         getContentPane().add(jLabelUsuario);
-        jLabelUsuario.setBounds(240, 60, 60, 14);
+        jLabelUsuario.setBounds(250, 60, 60, 14);
 
         jLabelSenha.setText("Senha");
         getContentPane().add(jLabelSenha);
-        jLabelSenha.setBounds(240, 90, 50, 14);
+        jLabelSenha.setBounds(250, 100, 50, 14);
 
         jButtonSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundotelaLogin.png"))); // NOI18N
         getContentPane().add(jButtonSair);

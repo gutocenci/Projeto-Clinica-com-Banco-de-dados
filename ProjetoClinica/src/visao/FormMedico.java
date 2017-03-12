@@ -5,15 +5,20 @@
  */
 package visao;
 
+import modeloConection.ConexaoBD;
+import modeloDoa.DaoMedico;
+import modelobeans.BeansMedico;
+
 /**
  *
  * @author Gustavo
  */
 public class FormMedico extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FormMedico
-     */
+    BeansMedico mod = new BeansMedico();
+    DaoMedico control = new DaoMedico();
+    ConexaoBD conex = new ConexaoBD();
+
     public FormMedico() {
         initComponents();
     }
@@ -57,17 +62,36 @@ public class FormMedico extends javax.swing.JFrame {
 
         jLabelFromMEdicoExpecializacao.setText("Expecialização ");
 
-        jComboBoxFormMedicoExpecializacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Oftalmologia", "Pediatria", "Cardiologista", "Hebiatra", "Clicnico Geral" }));
+        jTextFieldFormMedicoNome.setEnabled(false);
+
+        jFormattedTextFieldFormMedicoCRM.setEnabled(false);
+
+        jComboBoxFormMedicoExpecializacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Oftalmologia", "Pediatria", "Cardiologia", "Hebiatria", "Clicnico(a) Geral" }));
+        jComboBoxFormMedicoExpecializacao.setEnabled(false);
 
         jButtonFormMedicoSalvar.setText("Salvar");
+        jButtonFormMedicoSalvar.setEnabled(false);
+        jButtonFormMedicoSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFormMedicoSalvarActionPerformed(evt);
+            }
+        });
 
         jButtonFormMedicoNovo.setText("Novo");
+        jButtonFormMedicoNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFormMedicoNovoActionPerformed(evt);
+            }
+        });
 
         jButtonFormMedicoCancelar.setText("Cancelar");
+        jButtonFormMedicoCancelar.setEnabled(false);
 
         jButtonFormMedicoEditar.setText("Editar");
+        jButtonFormMedicoEditar.setEnabled(false);
 
         jButtonFormMedicoExcluir.setText("Excluir");
+        jButtonFormMedicoExcluir.setEnabled(false);
 
         jTableFormMedicoTebela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,6 +107,11 @@ public class FormMedico extends javax.swing.JFrame {
         jScrollPaneFormMedico.setViewportView(jTableFormMedicoTebela);
 
         jButtonFormMedicoPesquisar.setText("Pesquisar");
+        jButtonFormMedicoPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFormMedicoPesquisarActionPerformed(evt);
+            }
+        });
 
         jLabelFormMedicoPesquisar.setText("Digite o nome do medico :");
 
@@ -104,7 +133,7 @@ public class FormMedico extends javax.swing.JFrame {
                     .addGroup(jPanelFormMedicoLayout.createSequentialGroup()
                         .addGroup(jPanelFormMedicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelFromMedicoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelFormMedicoCRM, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
+                            .addComponent(jLabelFormMedicoCRM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelFormMedicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jFormattedTextFieldFormMedicoCRM, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -190,6 +219,30 @@ public class FormMedico extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(632, 522));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonFormMedicoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFormMedicoSalvarActionPerformed
+        mod.setNome(jTextFieldFormMedicoNome.getText());
+        mod.setEspecialidade((String) jComboBoxFormMedicoExpecializacao.getSelectedItem());
+        mod.setCrm(Integer.parseInt(jFormattedTextFieldFormMedicoCRM.getText()));
+        control.salvar(mod);
+        jTextFieldFormMedicoNome.setText("");
+        jFormattedTextFieldFormMedicoCRM.setText("");
+        jTextFieldFormMedicoNome.setEnabled(false);
+        jFormattedTextFieldFormMedicoCRM.setEnabled(false);
+        jComboBoxFormMedicoExpecializacao.setEnabled(false);
+        jButtonFormMedicoSalvar.setEnabled(false);
+    }//GEN-LAST:event_jButtonFormMedicoSalvarActionPerformed
+
+    private void jButtonFormMedicoNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFormMedicoNovoActionPerformed
+        jTextFieldFormMedicoNome.setEnabled(true);
+        jFormattedTextFieldFormMedicoCRM.setEnabled(true);
+        jComboBoxFormMedicoExpecializacao.setEnabled(true);
+        jButtonFormMedicoSalvar.setEnabled(true);
+    }//GEN-LAST:event_jButtonFormMedicoNovoActionPerformed
+
+    private void jButtonFormMedicoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFormMedicoPesquisarActionPerformed
+        
+    }//GEN-LAST:event_jButtonFormMedicoPesquisarActionPerformed
 
     /**
      * @param args the command line arguments
